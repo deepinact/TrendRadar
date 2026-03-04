@@ -74,12 +74,12 @@ _CHANNEL_BATCH_SIZES_DEFAULT = {
     "feishu": 30000,    # config.yaml: advanced.batch_size.feishu
     "dingtalk": 20000,  # config.yaml: advanced.batch_size.dingtalk
     "wework": 4000,     # config.yaml: advanced.batch_size.default
-    "telegram": 4000,   # config.yaml: advanced.batch_size.default
+    "telegram": 2000,   # config.yaml: advanced.batch_size.default
     "email": 0,         # 邮件无字节限制，不分批
     "ntfy": 3800,       # 严格 4KB 限制（ntfy 代码默认值）
     "bark": 4000,       # config.yaml: advanced.batch_size.bark
     "slack": 4000,      # config.yaml: advanced.batch_size.slack
-    "generic_webhook": 4000,
+    "generic_webhook": 2000,
 }
 
 # 显示最新消息在前的渠道，批次需反序发送
@@ -204,7 +204,7 @@ def _prepare_batches(message: str, channel_id: str, batch_sizes: Dict = None) ->
         准备好的批次列表（已添加头部，已处理反序）
     """
     sizes = batch_sizes or _CHANNEL_BATCH_SIZES_DEFAULT
-    max_bytes = sizes.get(channel_id, sizes.get("default", 4000))
+    max_bytes = sizes.get(channel_id, sizes.get("default", 2000))
     if max_bytes <= 0:
         # 无字节限制（如 email），返回原始文本
         return [message]
