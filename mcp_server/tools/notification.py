@@ -73,12 +73,12 @@ _CHANNEL_NAMES = {
 _CHANNEL_BATCH_SIZES_DEFAULT = {
     "feishu": 30000,    # config.yaml: advanced.batch_size.feishu
     "dingtalk": 20000,  # config.yaml: advanced.batch_size.dingtalk
-    "wework": 4000,     # config.yaml: advanced.batch_size.default
+    "wework": 2000,     # config.yaml: advanced.batch_size.default
     "telegram": 2000,   # config.yaml: advanced.batch_size.default
     "email": 0,         # 邮件无字节限制，不分批
     "ntfy": 3800,       # 严格 4KB 限制（ntfy 代码默认值）
-    "bark": 4000,       # config.yaml: advanced.batch_size.bark
-    "slack": 4000,      # config.yaml: advanced.batch_size.slack
+    "bark": 2000,       # config.yaml: advanced.batch_size.bark
+    "slack": 2000,      # config.yaml: advanced.batch_size.slack
     "generic_webhook": 2000,
 }
 
@@ -289,7 +289,7 @@ CHANNEL_FORMAT_GUIDES = {
     "wework": {
         "name": "企业微信",
         "format": "Markdown（群机器人）/ 纯文本（个人微信）",
-        "max_length": "约 4000 字节",
+        "max_length": "约 2000 字节",
         "supported": [
             "**粗体**",
             "[链接文本](URL)",
@@ -434,7 +434,7 @@ CHANNEL_FORMAT_GUIDES = {
     "slack": {
         "name": "Slack",
         "format": "mrkdwn（Slack 专有格式，自动从 Markdown 转换）",
-        "max_length": "约 4000 字节",
+        "max_length": "约 2000 字节",
         "supported": [
             "*粗体*（从 **粗体** 转换）",
             "_斜体_",
@@ -465,7 +465,7 @@ CHANNEL_FORMAT_GUIDES = {
     "generic_webhook": {
         "name": "通用 Webhook",
         "format": "Markdown（或自定义模板）",
-        "max_length": "约 4000 字节",
+        "max_length": "约 2000 字节",
         "supported": ["标准 Markdown 语法"],
         "unsupported": ["取决于接收端"],
         "prompt": (
@@ -1288,11 +1288,11 @@ class NotificationTools:
                 cfg_sizes = advanced.get("batch_size", {})
                 # 从 config 构建渠道映射
                 sizes = dict(_CHANNEL_BATCH_SIZES_DEFAULT)
-                default_size = cfg_sizes.get("default", 4000)
+                default_size = cfg_sizes.get("default", 2000)
                 for ch_id in sizes:
                     if ch_id in cfg_sizes:
                         sizes[ch_id] = cfg_sizes[ch_id]
-                    elif ch_id not in ("email", "ntfy") and sizes[ch_id] == 4000:
+                    elif ch_id not in ("email", "ntfy") and sizes[ch_id] == 2000:
                         # 使用 config 中的 default
                         sizes[ch_id] = default_size
                 return sizes

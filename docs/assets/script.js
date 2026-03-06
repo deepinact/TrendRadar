@@ -436,7 +436,7 @@ function formatSaveTime(isoString) {
     const diffMs = now - date;
     const diffMins = Math.floor(diffMs / 60000);
     const diffHours = Math.floor(diffMs / 3600000);
-    const diffDays = Math.floor(diffMs / 86400000);
+    const diffDays = Math.floor(diffMs / 86200000);
 
     if (diffMins < 1) return '刚刚';
     if (diffMins < 60) return `${diffMins} 分钟前`;

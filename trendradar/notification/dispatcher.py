@@ -413,7 +413,7 @@ class NotificationDispatcher:
                 proxy_url=proxy_url,
                 mode=mode,
                 account_label=account_label,
-                batch_size=self.config.get("MESSAGE_BATCH_SIZE", 4000),
+                batch_size=self.config.get("MESSAGE_BATCH_SIZE", 2000),
                 batch_interval=self.config.get("BATCH_SEND_INTERVAL", 1.0),
                 msg_type=self.config.get("WEWORK_MSG_TYPE", "markdown"),
                 split_content_func=self.split_content_func,
@@ -477,7 +477,7 @@ class NotificationDispatcher:
                     proxy_url=proxy_url,
                     mode=mode,
                     account_label=account_label,
-                    batch_size=self.config.get("MESSAGE_BATCH_SIZE", 4000),
+                    batch_size=self.config.get("MESSAGE_BATCH_SIZE", 2000),
                     batch_interval=self.config.get("BATCH_SEND_INTERVAL", 1.0),
                     split_content_func=self.split_content_func,
                     rss_items=rss_items if display_regions.get("RSS", True) else None,
@@ -623,7 +623,7 @@ class NotificationDispatcher:
                 proxy_url=proxy_url,
                 mode=mode,
                 account_label=account_label,
-                batch_size=self.config.get("SLACK_BATCH_SIZE", 4000),
+                batch_size=self.config.get("SLACK_BATCH_SIZE", 2000),
                 batch_interval=self.config.get("BATCH_SEND_INTERVAL", 1.0),
                 split_content_func=self.split_content_func,
                 rss_items=rss_items if display_regions.get("RSS", True) else None,
@@ -683,7 +683,7 @@ class NotificationDispatcher:
                 proxy_url=proxy_url,
                 mode=mode,
                 account_label=account_label,
-                batch_size=self.config.get("MESSAGE_BATCH_SIZE", 4000),
+                batch_size=self.config.get("MESSAGE_BATCH_SIZE", 2000),
                 batch_interval=self.config.get("BATCH_SEND_INTERVAL", 1.0),
                 split_content_func=self.split_content_func,
                 rss_items=rss_items if display_regions.get("RSS", True) else None,
@@ -962,7 +962,7 @@ class NotificationDispatcher:
             account_label = f"账号{i+1}" if len(webhooks) > 1 else ""
             try:
                 batches = self.split_content_func(
-                    content, self.config.get("MESSAGE_BATCH_SIZE", 4000)
+                    content, self.config.get("MESSAGE_BATCH_SIZE", 2000)
                 )
 
                 for batch_content in batches:
@@ -1004,7 +1004,7 @@ class NotificationDispatcher:
             account_label = f"账号{i+1}" if len(tokens) > 1 else ""
             try:
                 batches = self.split_content_func(
-                    content, self.config.get("MESSAGE_BATCH_SIZE", 4000)
+                    content, self.config.get("MESSAGE_BATCH_SIZE", 2000)
                 )
 
                 for batch_content in batches:
@@ -1123,7 +1123,7 @@ class NotificationDispatcher:
             account_label = f"账号{i+1}" if len(webhooks) > 1 else ""
             try:
                 batches = self.split_content_func(
-                    content, self.config.get("SLACK_BATCH_SIZE", 4000)
+                    content, self.config.get("SLACK_BATCH_SIZE", 2000)
                 )
 
                 for batch_content in batches:

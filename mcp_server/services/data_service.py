@@ -496,7 +496,7 @@ class DataService:
             push_config = {
                 "enable_notification": notification.get("enabled", True),
                 "enabled_channels": [],
-                "message_batch_size": batch_size.get("default", 4000),
+                "message_batch_size": batch_size.get("default", 2000),
                 "push_window": {}  # 已迁移至调度系统（schedule + timeline.yaml）
             }
 

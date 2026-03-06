@@ -18,7 +18,7 @@ DEFAULT_BATCH_SIZES = {
     "dingtalk": 20000,
     "feishu": 29000,
     "ntfy": 3800,
-    "default": 4000,
+    "default": 2000,
 }
 
 # 默认区域顺序
@@ -87,7 +87,7 @@ def split_content_into_batches(
         elif format_type == "ntfy":
             max_bytes = sizes.get("ntfy", 3800)
         else:
-            max_bytes = sizes.get("default", 4000)
+            max_bytes = sizes.get("default", 2000)
 
     batches = []
 
